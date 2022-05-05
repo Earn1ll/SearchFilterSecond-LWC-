@@ -45,8 +45,8 @@ export default class ContactsTable extends LightningElement {
                 let rowData = {};                
                 rowData={
                     ...row,
-                    LinkAcc : row.AccountId ? '/' + row.AccountId : "",
-                    AccountName : row.AccountId ? row.Account.Name : ""};              
+                    LinkAcc : row.AccountId ? '/' + row.AccountId : " ",
+                    AccountName : row.AccountId ? row.Account.Name : " "};              
                 currentData.push(rowData);                
             });
             this.data = currentData;            
