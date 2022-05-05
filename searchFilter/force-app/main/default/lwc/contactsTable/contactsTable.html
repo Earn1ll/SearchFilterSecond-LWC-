@@ -1,0 +1,29 @@
+<template>
+     <div class="slds-grid slds-gutters header">
+        <div class="slds-col">
+            <c-search-filter onfilter={seachContact}></c-search-filter>
+        </div>
+        <div class="slds-col newContact">
+            <c-new-contact-modal-window onrefresh={refresh}></c-new-contact-modal-window>
+        </div>
+    </div>
+    <lightning-datatable hide-checkbox-column
+        key-field="Id"
+        data={data}
+        columns={columns}
+        onrowaction={modalWindowDelete}       
+        >
+    </lightning-datatable>    
+    <c-dialog-delete-action
+            title='Delete Contact'
+            message='“Are you sure you want to delete this contact?”'
+            confirm-label='Delete'
+            cancel-label='Cancel'
+            show-delete={modalShowDelete}
+            original-message={originalMessage}
+            name="confirmModal"
+            ondeletecontact={modalData}
+            record-id={recordId}
+            selected-row={selectedRow}>
+    </c-dialog-delete-action>
+</template>

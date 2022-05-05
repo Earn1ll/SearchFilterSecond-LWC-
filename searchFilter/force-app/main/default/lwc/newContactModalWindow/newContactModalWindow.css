@@ -1,0 +1,11 @@
+.modalWindow{
+    background-color: rgb(234, 231, 231);
+    border: 1px solid black;
+    border-radius: 12px;
+}
+.contact{
+    color: black;
+    font-style: italic;
+    font-size: 20px;
+}
+
