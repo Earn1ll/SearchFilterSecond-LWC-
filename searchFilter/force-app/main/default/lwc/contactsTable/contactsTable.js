@@ -1,4 +1,4 @@
-import { LightningElement, wire, track,api} from 'lwc';
+import { LightningElement, wire, track, api} from 'lwc';
 import getContacts from '@salesforce/apex/contactsController.getContacts';
 import deleteContact from '@salesforce/apex/contactsController.deleteContact';
 import {refreshApex} from '@salesforce/apex';
@@ -60,7 +60,7 @@ export default class ContactsTable extends LightningElement {
         return refreshApex(this.refreshTable);
     }
     
-    searchContact(event) {
+    seachContact(event) {
         this.data = event.detail;        
         let resultData = {
             error: null,
@@ -91,23 +91,19 @@ export default class ContactsTable extends LightningElement {
     }
     
     deleteContacts(currentRow) {
-
         let currentRecord = [];
         currentRecord.push(currentRow.Id);
         deleteContact({idContactsDelete: currentRecord})
             .then(() => {
-
                 this.dispatchEvent(new ShowToastEvent({
                         title: 'Success!!',
                         message: currentRow.FirstName + ' ' + currentRow.LastName + ' Contact deleted.',
                         variant: 'success'
                     }),
                 );
-
                 return refreshApex(this.refreshTable);
             })
             .catch(error => {
-
                 this.dispatchEvent(new ShowToastEvent({
                         title: 'Error!!',
                         message: error.message,
