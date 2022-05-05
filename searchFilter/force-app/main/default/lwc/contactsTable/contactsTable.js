@@ -60,7 +60,7 @@ export default class ContactsTable extends LightningElement {
         return refreshApex(this.refreshTable);
     }
     
-    seachContact(event) {
+    searchContact(event) {
         this.data = event.detail;        
         let resultData = {
             error: null,
