@@ -1,6 +1,6 @@
 import { LightningElement, wire, track, api} from 'lwc';
-import getContacts from '@salesforce/apex/contactsController.getContacts';
-import deleteContact from '@salesforce/apex/contactsController.deleteContact';
+import getContacts from '@salesforce/apex/ContactsController.getContacts';
+import deleteContact from '@salesforce/apex/ContactsController.deleteContact';
 import {refreshApex} from '@salesforce/apex';
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
 
@@ -10,21 +10,11 @@ const COLUMNS = [
     { label: 'Email', fieldName: 'Email', type: 'email' },
     { label: 'Account', fieldName: 'LinkAcc', type: 'url', typeAttributes: {label: {fieldName: 'AccountName'}}},
     { label: 'Mobile Phone', fieldName: 'MobilePhone', type: 'phone' },
-    { 
-        label: 'Created Date', fieldName: 'CreatedDate', type: 'date', typeAttributes: {
-            month: "2-digit",
-            day: "2-digit",
-            year: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit"
-        } 
-    },
-    {
-        type: 'button-icon', label: 'Action', initialWidth: 75, typeAttributes: {
-            iconName: 'action:delete', title: 'Delete', name: 'delete_contact',
-            variant: 'border-filled', alternativeText: 'Delete'
-        }
-    }
+    { label: 'Created Date', fieldName: 'CreatedDate', type: 'date', typeAttributes: {
+        month: "2-digit", day: "2-digit", year: "2-digit", hour: "2-digit", minute: "2-digit"} },
+    { type: 'button-icon', label: 'Action', initialWidth: 75, typeAttributes: {
+        iconName: 'action:delete', title: 'Delete', name: 'delete_contact',
+        variant: 'border-filled', alternativeText: 'Delete'}}
 ];
 export default class ContactsTable extends LightningElement {
     @track columns = COLUMNS;
@@ -45,8 +35,8 @@ export default class ContactsTable extends LightningElement {
                 let rowData = {};                
                 rowData={
                     ...row,
-                    LinkAcc : row.AccountId ? '/' + row.AccountId : " ",
-                    AccountName : row.AccountId ? row.Account.Name : " "};              
+                    LinkAcc : row.AccountId ? '/' + row.AccountId : ' ',
+                    AccountName : row.AccountId ? row.Account.Name : ' '};              
                 currentData.push(rowData);                
             });
             this.data = currentData;            
